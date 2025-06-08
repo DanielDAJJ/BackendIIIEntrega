@@ -7,8 +7,8 @@ Este proyecto forma parte del curso de Backend en Coderhouse. La entrega consist
 ## 📦 Contenido de la entrega
 
 - ✅ **`mocks.router.js`** bajo la ruta `/api/mocks`
-- ✅ Endpoint `GET /mockingpets`: genera 100 mascotas falsas
-- ✅ Endpoint `GET /mockingusers`: genera 50 usuarios con formato MongoDB
+- ✅ Endpoint `GET /mockingpets`: genera 25mascotas falsas
+- ✅ Endpoint `GET /mockingusers`: genera 25 suarios con formato MongoDB
 - ✅ Endpoint `POST /generateData`: inserta datos simulados en la base de datos
 - ✅ Módulos de mocking (`mockUsers.js`, `mockPets.js`)
 - ✅ Servicio de inserción (`mockService.js`)
