@@ -31,6 +31,9 @@ const login = async (req, res) => {
     if(!user) return res.status(404).send({status:"error",error:"User doesn't exist"});
     const isValidPassword = await passwordValidation(user,password);
     if(!isValidPassword) return res.status(400).send({status:"error",error:"Incorrect password"});
+
+    user.l
+
     const userDto = UserDTO.getUserTokenFrom(user);
     const token = jwt.sign(userDto,'tokenSecretJWT',{expiresIn:"1h"});
     res.cookie('coderCookie',token,{maxAge:3600000}).send({status:"success",message:"Logged in"})
