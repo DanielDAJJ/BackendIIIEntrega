@@ -1,6 +1,6 @@
 import { usersService } from "../services/index.js";
 import { createHash, passwordValidation } from "../utils/index.js";
-import jwt from 'jsonwebtoken';
+import jwt, { decode } from 'jsonwebtoken';
 import UserDTO from '../dto/User.dto.js';
 
 const register = async (req, res) => {
@@ -32,11 +32,34 @@ const login = async (req, res) => {
     const isValidPassword = await passwordValidation(user,password);
     if(!isValidPassword) return res.status(400).send({status:"error",error:"Incorrect password"});
 
-    user.l
+    user.last_connection = new Date();
+    await usersService.update(user._id, user);
+    console.log(`Usuario ${user.email} inicio sesion a las ${user.last_connection.toLocaleString()}`);
 
     const userDto = UserDTO.getUserTokenFrom(user);
     const token = jwt.sign(userDto,'tokenSecretJWT',{expiresIn:"1h"});
     res.cookie('coderCookie',token,{maxAge:3600000}).send({status:"success",message:"Logged in"})
+}
+
+const logout = async (req, res) => {
+    try {
+        const cookie = req.cookies['coderCookie'];
+        if(!cookie) return res.status(400).send({status: 'error', error: 'No se encontro sesion iniciada'}); 
+
+        const decoded = jwt.verify(cookie, 'tokenSecretJWT');
+        const user = await usersService.getUserByEmail(decoded.email);
+        if(!user) return res.status(404).send({status: 'error', error: 'Usuario no encontrado'});
+
+        user.last_connection = new Date();
+        await usersService.update(user._id, user);
+        console.log(`Usuario ${user.email} cerró sesion a las ${user.last_connection.toLocaleString()}`);
+        
+
+        res.clearCookie('coderCookie');
+        res.send({status: 'succes', message: 'Logged out succesfullu'});
+    } catch (error) {
+        console.error(`Logout error: ${error}`)
+    }
 }
 
 const current = async(req,res) =>{
@@ -68,5 +91,6 @@ export default {
     register,
     current,
     unprotectedLogin,
-    unprotectedCurrent
+    unprotectedCurrent,
+    logout
 }
