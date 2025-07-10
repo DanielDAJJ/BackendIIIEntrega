@@ -16,3 +16,16 @@
 [09-07-2025 18:54:47] [32minfo[39m: [32mPOST en /api/sessions/login - 6:54:47 p.m.[39m
 [09-07-2025 18:54:47] [32minfo[39m: [32mLogin success: sessionuser1752105284631@mail.com[39m
 [09-07-2025 18:54:47] [32minfo[39m: [32mGET en /api/sessions/current - 6:54:47 p.m.[39m
+[10-07-2025 13:57:32] [32minfo[39m: [32mGET en / - 1:57:32 p.m.[39m
+[10-07-2025 13:57:39] [32minfo[39m: [32mGET en /api/docs/ - 1:57:39 p.m.[39m
+[10-07-2025 13:57:40] [32minfo[39m: [32mGET en /api/docs/swagger-ui.css - 1:57:40 p.m.[39m
+[10-07-2025 13:57:40] [32minfo[39m: [32mGET en /api/docs/swagger-ui-standalone-preset.js - 1:57:40 p.m.[39m
+[10-07-2025 13:57:40] [32minfo[39m: [32mGET en /api/docs/swagger-ui-init.js - 1:57:40 p.m.[39m
+[10-07-2025 13:57:40] [32minfo[39m: [32mGET en /api/docs/swagger-ui-bundle.js - 1:57:40 p.m.[39m
+[10-07-2025 13:57:40] [32minfo[39m: [32mGET en /api/docs/favicon-16x16.png - 1:57:40 p.m.[39m
+[10-07-2025 13:57:52] [32minfo[39m: [32mGET en /api/users/ - 1:57:52 p.m.[39m
+[10-07-2025 13:57:52] [32minfo[39m: [32mUsers fetched successfully[39m
+[10-07-2025 13:57:52] [32minfo[39m: [32mGET en /favicon.ico - 1:57:52 p.m.[39m
+[10-07-2025 13:58:35] [32minfo[39m: [32mGET en /api/pets/ - 1:58:35 p.m.[39m
+[10-07-2025 13:58:35] [32minfo[39m: [32mPets fetched successfully[39m
+[10-07-2025 13:58:35] [32minfo[39m: [32mGET en /favicon.ico - 1:58:35 p.m.[39m
