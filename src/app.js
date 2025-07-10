@@ -8,11 +8,13 @@ import petsRouter from './routes/pets.router.js';
 import adoptionsRouter from './routes/adoption.router.js';
 import sessionsRouter from './routes/sessions.router.js';
 import mocksRouter from './routes/mocks.router.js';
+import addLogger from './middlewares/logger.middleware.js';
 
 const app = express();
 
 app.use(express.json());
 app.use(cookieParser());
+app.use(addLogger);
 
 app.use('/api/docs', swaggerUiExpress.serve, swaggerUiExpress.setup(specs));
 app.use('/api/users',usersRouter);

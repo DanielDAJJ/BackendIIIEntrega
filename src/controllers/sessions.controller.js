@@ -18,27 +18,35 @@ const register = async (req, res) => {
         }
         let result = await usersService.create(user);
         console.log(result);
+        req.logger.info(`Registered user: ${email}`);
         res.send({ status: "success", payload: result._id });
     } catch (error) {
-
+        req.logger.error(`Registration error: ${error.message}`);
+        res.status(500).send({ status: "error", error: "Internal server error" });
     }
 }
 
 const login = async (req, res) => {
-    const { email, password } = req.body;
-    if (!email || !password) return res.status(400).send({ status: "error", error: "Incomplete values" });
-    const user = await usersService.getUserByEmail(email);
-    if(!user) return res.status(404).send({status:"error",error:"User doesn't exist"});
-    const isValidPassword = await passwordValidation(user,password);
-    if(!isValidPassword) return res.status(400).send({status:"error",error:"Incorrect password"});
+    try {
+        const { email, password } = req.body;
+        if (!email || !password) return res.status(400).send({ status: "error", error: "Incomplete values" });
+        const user = await usersService.getUserByEmail(email);
+        if(!user) return res.status(404).send({status:"error",error:"User doesn't exist"});
+        const isValidPassword = await passwordValidation(user,password);
+        if(!isValidPassword) return res.status(400).send({status:"error",error:"Incorrect password"});
 
-    user.last_connection = new Date();
-    await usersService.update(user._id, user);
-    console.log(`Usuario ${user.email} inicio sesion a las ${user.last_connection.toLocaleString()}`);
+        user.last_connection = new Date();
+        await usersService.update(user._id, user);
+        console.log(`Usuario ${user.email} inicio sesion a las ${user.last_connection.toLocaleString()}`);
 
-    const userDto = UserDTO.getUserTokenFrom(user);
-    const token = jwt.sign(userDto,'tokenSecretJWT',{expiresIn:"1h"});
-    res.cookie('coderCookie',token,{maxAge:3600000}).send({status:"success",message:"Logged in"})
+        const userDto = UserDTO.getUserTokenFrom(user);
+        const token = jwt.sign(userDto,'tokenSecretJWT',{expiresIn:"1h"});
+        req.logger.info(`Login success: ${email}`);
+        res.cookie('coderCookie',token,{maxAge:3600000}).send({status:"success",message:"Logged in"})
+    } catch (error) {
+        req.logger.error(`Login error: ${error.message}`);
+        res.status(500).send({ status: "error", error: "Internal server error" });
+    }
 }
 
 const logout = async (req, res) => {
@@ -53,12 +61,13 @@ const logout = async (req, res) => {
         user.last_connection = new Date();
         await usersService.update(user._id, user);
         console.log(`Usuario ${user.email} cerró sesion a las ${user.last_connection.toLocaleString()}`);
-        
 
         res.clearCookie('coderCookie');
+        req.logger.info(`Logout success${email}`);
         res.send({status: 'succes', message: 'Logged out succesfullu'});
     } catch (error) {
-        console.error(`Logout error: ${error}`)
+        req.logger.error(`Logout error: ${error.message}`);
+        res.status(500).send({ status: "error", error: "Internal server error" });
     }
 }
 

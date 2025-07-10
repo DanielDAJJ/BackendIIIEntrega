@@ -1,0 +1,18 @@
+[09-07-2025 18:07:03] [32minfo[39m: [32mGET en /api/adoptions - 6:07:03 p.m.[39m
+[09-07-2025 18:07:04] [32minfo[39m: [32m✅ Adoptions fetched successfully[39m
+[09-07-2025 18:07:04] [32minfo[39m: [32mGET en /api/adoptions/64d2d04c2f9b2569be1a0000 - 6:07:04 p.m.[39m
+[09-07-2025 18:07:04] [32minfo[39m: [32mPOST en /api/adoptions/686ef617f299ac36f8058644/686ef617f299ac36f8058647 - 6:07:04 p.m.[39m
+[09-07-2025 18:07:04] [32minfo[39m: [32mPOST en /api/sessions/register - 6:07:04 p.m.[39m
+[09-07-2025 18:07:05] [32minfo[39m: [32mPOST en /api/sessions/login - 6:07:05 p.m.[39m
+[09-07-2025 18:07:05] [32minfo[39m: [32mGET en /api/sessions/current - 6:07:05 p.m.[39m
+[09-07-2025 18:54:46] [32minfo[39m: [32mGET en /api/adoptions - 6:54:46 p.m.[39m
+[09-07-2025 18:54:46] [32minfo[39m: [32mAdoptions fetched successfully[39m
+[09-07-2025 18:54:46] [32minfo[39m: [32mGET en /api/adoptions/64d2d04c2f9b2569be1a0000 - 6:54:46 p.m.[39m
+[09-07-2025 18:54:46] [33mwarning[39m: [33mAdoption not found: 64d2d04c2f9b2569be1a0000[39m
+[09-07-2025 18:54:46] [32minfo[39m: [32mPOST en /api/adoptions/686f014516161a37bbb1836e/686f014516161a37bbb18371 - 6:54:46 p.m.[39m
+[09-07-2025 18:54:46] [32minfo[39m: [32mAdoption created: user 686f014516161a37bbb1836e adopted pet 686f014516161a37bbb18371[39m
+[09-07-2025 18:54:47] [32minfo[39m: [32mPOST en /api/sessions/register - 6:54:47 p.m.[39m
+[09-07-2025 18:54:47] [32minfo[39m: [32mRegistered user: sessionuser1752105284631@mail.com[39m
+[09-07-2025 18:54:47] [32minfo[39m: [32mPOST en /api/sessions/login - 6:54:47 p.m.[39m
+[09-07-2025 18:54:47] [32minfo[39m: [32mLogin success: sessionuser1752105284631@mail.com[39m
+[09-07-2025 18:54:47] [32minfo[39m: [32mGET en /api/sessions/current - 6:54:47 p.m.[39m
