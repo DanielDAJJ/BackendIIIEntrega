@@ -32,6 +32,8 @@ Crea un archivo .env con el siguiente contenido:
 ```js
 PORT=8080
 MONGO_URL=mongodb+srv://<usuario>:<contraseña>@<cluster>.mongodb.net/<nombreDB>
+JWT_SECRET=example_secret
+COOKIE_SECRET=example_cookie
 ```
 
 ---
@@ -41,8 +43,11 @@ MONGO_URL=mongodb+srv://<usuario>:<contraseña>@<cluster>.mongodb.net/<nombreDB>
 npm test
 ```
 Incluye pruebas funcionales para:
-- ✅ api/adoptions
-- ✅ api/sessions(register, login, current)
+- GET /api/adoptions → 200 + array
+- GET /api/adoptions/:aid → 200 (si existe) y 404 (si no)
+- POST /api/adoptions/:uid/:pid → 200 (éxito), 400 (ya adoptado), 404 (usuario o mascota inexistente)
+- POST /api/sessions/register y /login → Registro y login de usuario
+- GET /api/sessions/current → Usuario autenticado
 
 ---
 
@@ -56,21 +61,22 @@ Disponible en:
 
 **Construir la imagen:**
 ```bash
-docker build -t adoptme-backend .
+docker build -t adoptme-backend:v1.0.0 .
 ```
 
 **Ejecutar el contenedor:**
 ```bash
-docker build -t adoptme-backend .
+docker run -d -p 8080:8080 adoptme-backend:v1.0.0
 ```
 
 ---
 
 ## 📤 Imagen en DockerHub
-[enlace 🔗](https://hub.docker.com/r/danieljj95/adoptme-backend)
+La imagen del proyecto está publicada en DockerHub:
+enlace 🔗 [https://hub.docker.com/r/danieljj95/adoptme-backend](https://hub.docker.com/r/danieljj95/adoptme-backend)
 ```bash
-docker pull danieljj95/adoptme-backend
-docker run -d -p 8080:8080 danieljj95/adoptme-backend
+docker pull danieljj95/adoptme-backend:v1.0.0
+docker run -d -p 8080:8080 danieljj95/adoptme-backend:v1.0.0
 ```
 
 ---
@@ -95,15 +101,16 @@ src/
 ---
 
 ## 🔐 Funcionalidades principales
-- Registro y login de usuarios con JWT y cookies
-- Carga de imágenes y documentos con Multer
-- Logger con múltiples niveles usando Winston
-- Documentación Swagger completa para endpoints
-- Dockerfile para despliegue
-- mocks.router.js bajo la ruta /api/mocks
+- Registro y login de usuarios con JWT + cookies
+- Subida de imágenes y documentos con Multer
+- Logger avanzado con Winston (niveles, consola y archivos)
+- Documentación Swagger de todos los endpoints
+- Dockerfile listo para despliegue
+- Ruta de mockeo en /api/mocks
+- Tests funcionales con cobertura de sesiones y adopciones
 
 ---
 
 ## Autor
 👤 Daniel Jaimes
-💻 GitHub: @DanielDAJJ
+💻 GitHub: [@DanielDAJJ](https://github.com/DanielDAJJ)
